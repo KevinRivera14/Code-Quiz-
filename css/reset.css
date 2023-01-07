@@ -1,0 +1,94 @@
+/* change all box sizes on html page.*/ 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing:content-box; 
+  }
+/* decided to add height to my html */ 
+  html {
+    height: 70%;
+  }
+  /* changed all body elements to have  same min-height */
+  body {
+    min-height: 80%;
+    line-height: 1.5;
+    font-family: monospace;
+  }
+  
+  h1 {
+    font-size: 50% ;
+  }
+
+  h2 {
+    font-size: 50%;
+  }
+
+  h3 {
+    font-size: 50% ;
+
+  }
+
+  h4 {
+    font-size: 50% ;
+     
+  }
+
+  h5 {
+    font-size: 50% ;
+
+  }   
+
+  h6 {
+    font-size: 50%;
+  }
+  
+
+  input { 
+    font-size: 65%;
+
+  }
+
+  select {
+    font-size: 65%;
+
+  }
+
+  option {
+    font-size: 65%;
+
+  }
+
+  optgroup {
+    font-size: 65%;
+
+  }
+
+  textarea {
+    font-size: 65%;
+
+  }
+
+  button {
+    font-size: 65%;
+
+  }
+   
+  pre {
+    font-size: 65%;
+
+  }
+
+  code {
+    font-size: 65%;
+    font-family: monospace;
+  }
+  
+
+  ol {
+    list-style: none;
+
+  }
+
+  ul {
+    list-style: none;
+  }
