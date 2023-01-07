@@ -1,6 +1,6 @@
 /*Here is all my code for my JavaScript portion*/
     
-    var greeting = document.querySelector("#greeting");
+    var greeting = document.querySelector("#greeting"); 
     var BeginBtn = document.querySelector("#begin_button");
     var launchPage =document.querySelector("#launch_page"); 
     
@@ -90,7 +90,7 @@
             questionPage.style.display = "block";
             questionNumber = 0
             countdown();
-            showQuestion(questionNumber);
+            displayQuestion(questionNumber);
           
     }
     // this will display all of the following questions
@@ -106,13 +106,12 @@
     // this will show if the  answer is correct or not
     function examineAnswer(event) {
         event.preventDefault();
-
         checkLine.style.display = "inline";
         setTimeout(function () {
             checkLine.style.display = 'none';
         }, 1000); 
     
-        // this part will check th
+        
         if (questionSource[questionNumber].answer == event.target.value) {
             checkLine.textContent = "good!"; 
             totalScore = totalScore + 1;
@@ -124,7 +123,7 @@
         
         if (questionNumber < questionSource.length - 1 ) {
 
-            showQuestion(questionNumber + 1);
+            displayQuestion(questionNumber + 1); 
         } else {
         gameOver();
     }
@@ -202,46 +201,46 @@
     
     /* Adds event listeners*/
     // startbtn to start the quiz
-    startBtn.addEventListener("click", startQuiz);
+    BeginBtn.addEventListener("click", commenceQuiz); 
     
     // Go to the next question 
-    reactButtons.forEach(function(click){
+    replyButtons.forEach(function(click){
     
-        click.addEventListener("click", checkAnswer);
+        click.addEventListener("click", examineAnswer); 
     });
     
     // this part will save information 
-    submitBtn.addEventListener("click", function(event) {
+    suggestedBtn.addEventListener("click", function(event) {
         event.preventDefault();
         scoreBoard.style.display = "none";
         introPage.style.display = "none";
-        highScorePage.style.display = "block";
+        highScorePage.style.display = "block"; 
         questionPage.style.display ="none";
         saveScore();
     });
     
     // this part will check for the high score
-    scoreCheck.addEventListener("click", function(event) {
+    score.addEventListener("click", function(event) {
         event.preventDefault();
         scoreBoard.style.display = "none";
         introPage.style.display = "none";
         highScorePage.style.display = "block";
         questionPage.style.display ="none";
-        displayScore();
+        displayScore(); 
     });
     
     // this will take me back to the main page
-    backBtn.addEventListener("click",function(event){
+    returnBtn.addEventListener("click",function(event){
             event.preventDefault();
             scoreBoard.style.display = "none";
             introPage.style.display = "block";
             highScorePage.style.display = "none";
             questionPage.style.display ="none";
-            location.reload();
+            location.reload(); 
     });
     
     
-    clearBtn.addEventListener("click", function(event) {
+    removeBtn.addEventListener("click", function(event) {
         event.preventDefault();
         localStorage.clear();
         displayScore();
