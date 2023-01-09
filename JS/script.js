@@ -1,6 +1,6 @@
 
     // i was instructed to declare all of my variables first // 
-    
+
     var welcome = document.querySelector("#introduction");
     var CommenceBtn = document.querySelector("#start_button");
     var beggingPage =document.querySelector("#intro_page");
@@ -219,7 +219,8 @@
 
     CommenceBtn.addEventListener("click", beginQuiz);
     
-    // Go to the next question 
+
+    // this part of my code will take you to the next question 
     reactButtons.forEach(function(click){
     
         click.addEventListener("click", checkReply);

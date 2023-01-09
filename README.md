@@ -4,7 +4,7 @@
 
 # 04 Web API's: Code Quiz 
 
-web page URL: file:///Users/kevinrivera/Desktop/Coding%20Projects/Code-Quiz/Code-Quiz-/index.html 
+web page URL: https://kevinrivera14.github.io/Code-Quiz-/ 
 
 GitHub Url: https://github.com/KevinRivera14/Code-Quiz- 
 
@@ -15,4 +15,4 @@ Also this challenge will use javascript and web API's to store the high scores.
 
 created by kevin Rivera @ 2022  
 
-also please be nice im still learning how to code 
+
