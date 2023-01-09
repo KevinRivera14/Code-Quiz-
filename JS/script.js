@@ -1,5 +1,6 @@
-/*Define variables*/
-    //Assignment Code to each section
+
+    // i was instructed to declare all of my variables first // 
+    
     var welcome = document.querySelector("#introduction");
     var CommenceBtn = document.querySelector("#start_button");
     var beggingPage =document.querySelector("#intro_page");
@@ -27,61 +28,43 @@
     var backBtn =document.querySelector("#back_btn");
     var clearBtn=document.querySelector("#clear_btn");
     
-    // Define questions (Object)
+    // below is where i will put all of my questions 
     var questionSource = [
         {
-            question: "String values must be enclosed within _____ when being assigned to variables.",
-            choices: ["a. commas", "b. curly brackets", "c. quotes", "d. parenthesis"],
+            question: "String values must be closed within _____ ?.",
+            choices: ["a. string", "b. Chocolate ", "c. quotes", "d. Penut Butter"],
             answer: "c"
         },
         {
-            question: "Commonly used data types DO NOT include:",
-            choices: ["a. strings", "b. booleans", "c. alerts", "d. numbers"],
+            question: "what are the most commonly used data types ? :", 
+            choices: ["a. Ballons", "b. function ", "c. Alerts", "d. ASYNC"],
             answer: "c"
         },
         {
-            question: "How do you create a function in JavaScript",
-            choices: ["a. function = myFunction()", "b. function myFunction()", "c. function:myFunction()", "d. createMyFunction()"],
+            question: "how is a function made in JS ?",
+            choices: ["a. In a bakery", "b. function myFunction()", "c. Costco", "d. Ask Google "],
             answer: "b"
         },
         {
-            question: "To see if two variables are equal in an if / else statement you would use ____.",
-            choices: ["a. =", "b. ==", "c. 'equals'", "d. !="],
+            question: "how do you tell if one or more variable are equal in a else statement",
+            choices: ["a. +", "b. ==", "c. '$'", "d. !!!"],
             answer: "b"
         },
         {
-            question: "How do you call a function named myFunction?",
-            choices: ["a. call myFunction()", "b. call function myFunction()", "c. myFunction()", "d. call myFunction"],
+            question: "What is the command to change directories ?",
+            choices: ["a. ABC ", "b. ls ", "c. cd ", "d. db "],
             answer: "c"
         },
         {
-            question: "The first index of an array is ____.",
-            choices: ["a. 1", "b. 0", "c. 8", "d. any"],
+            question: "what is the concatination sign look like ? ",
+            choices: ["a. !", "b. +", "c. @", "d. $"],
             answer: "b"
         },
-        {
-            question: "How to write an IF statement in JavaScript?",
-            choices: ["a. if i == 5 then", "b. if i = 5 then", "c. if(i == 5)", "d. if i = 5"],
-            answer: "c"
-        },
-        {
-            question: "The external JavaScript file must contain the <script> tag.",
-            choices: ["a. True", "b. False", "c. Maybe", "d. I don't know"],
-            answer: "b"
-        },
-        {
-            question: "Which event occurs when the user clicks on an HTML element?",
-            choices: ["a. onclick", "b. onchange", "c. onmouseover", "d. onmouseclick"],
-            answer: "a"
-        },
-        {
-            question: "What is the correct syntax for referring to an external script called 'xxx.js'?",
-            choices: ["a. <script name='./xxx.js'>", "b. <script href='./xxx.js'>", "c. <script scr='./xxx.js'>", "d. <script ='./xxx.js'>"],
-        answer: "c"
-        }
+      
+      
     ];
 
-    // Set other variables
+// this is where i am going to set up my variables 
     
     var timeLeft = document.getElementById("timer");
     
@@ -89,10 +72,9 @@
     var questionNumber = 0;
     var totalScore = 0;
     var questionCount = 1;
-    /*Functions*/
-    // WHEN I click the start button, THEN a timer starts
-    // the setInterval() method
-    function countdown() {
+    
+  // this part of my code will be for the timer in my code quiz 
+    function timer() {
             
             var timerInterval = setInterval(function () {
     
@@ -104,26 +86,28 @@
                     timeLeft.textContent = "Time is up!"; 
                     // if time is up, show on score board content show "Time is up! message"
                     finish.textContent = "Time is up!";
-                    gameOver();
+                    gameTerminated();
     
                 } else  if(questionCount >= questionSource.length + 1) {
                     clearInterval(timerInterval);
-                    gameOver();
+                    gameTerminated();
                     } 
         }, 1000);
     }
     
-    // Function starts the quiz
-    function startQuiz () {
+    
+    // this fucntion will start the quiz 
+    function beginQuiz () {
             beggingPage.style.display = "none";
             ConcernsPage.style.display = "block";
             questionNumber = 0
-            countdown();
-            showQuestion(questionNumber);
+            timer();
+            revealQuestion(questionNumber);
           
     }
-    // Present the questions and answers
-    function showQuestion (n) {
+ 
+    // the part of my code will reveal the questions 
+    function revealQuestion (n) {
             interrogateQuestion.textContent = questionSource[n].question;
             answerBtn1.textContent = questionSource[n].choices[0];
             answerBtn2.textContent = questionSource[n].choices[1];
@@ -132,8 +116,8 @@
             questionNumber = n;
         }
     
-    // WHEN I answer a question,Show if answer is correct or incorrect 
-    function checkAnswer(event) {
+    
+    function checkReply(event) {
         event.preventDefault();
         // Display if answer is correct or incorrect
         examineLine.style.display = "block";
@@ -141,7 +125,8 @@
             examineLine.style.display = 'none';
         }, 1000);
     
-        // Check answer
+      
+        // this portion of the code will check for the answer 
         if (questionSource[questionNumber].answer == event.target.value) {
             examineLine.textContent = "Correct!"; 
             totalScore = totalScore + 1;
@@ -150,17 +135,17 @@
             secondsLeft = secondsLeft - 10;
             examineLine.textContent = "Wrong! The correct answer is " + questionSource[questionNumber].answer + ".";
         }
-        // THEN I am presented with another question
+        
         if (questionNumber < questionSource.length - 1 ) {
-        // Calls showQuestions to go to next question when any answerBtn is clicked
-            showQuestion(questionNumber + 1);
+        
+            revealQuestion(questionNumber + 1);
         } else {
-        gameOver();
+        gameTerminated();
     }
     questionCount++;
     }
-    // WHEN all questions are answered or the timer reaches 0, end game and show score
-    function gameOver() {
+  
+    function gameTerminated() {
     
             ConcernsPage.style.display = "none";
             scoreBoard.style.display = "block";
@@ -171,8 +156,8 @@
             timeLeft.style.display = "none"; 
     };
     
-    // Gets current score and initials from local storage
-    function getScore () {
+   
+    function getResults () {
         var currentList =localStorage.getItem("ScoreList");
         if (currentList !== null ){
             latestList = JSON.parse(currentList);
@@ -184,11 +169,11 @@
     };
     
     
-    // Displays score to the score board
-    function renderScore () {
+    // this part of my code will show the core on the score board 
+    function renderPoints () {
         scoreRecord.innerHTML = "";
         scoreRecord.style.display ="block";
-        var highScores = sort();   
+        var highScores = group();   
         // Slice high score array to only show the top five scores
         var topFive = highScores.slice(0,5);
         for (var i = 0; i < topFive.length; i++) {
@@ -201,10 +186,10 @@
         }
     };
     
-    // Sorts score and ranking the high score list
-    function sort () {
-        var unsortedList = getScore();
-        if (getScore == null ){
+    
+    function group () {
+        var unsortedList = getResults();
+        if (getResults == null ){
             return;
         } else {
         unsortedList.sort(function(a,b){
@@ -213,53 +198,56 @@
         return unsortedList;
     }};
     
-    // Pushes new score and initials to local storage
-    function addItem (n) {
-        var addedList = getScore();
+ 
+    // the code below will add the new score to the local storage 
+    function addObject (n) {
+        var addedList = getResults();
         addedList.push(n);
         localStorage.setItem("ScoreList", JSON.stringify(addedList));
     };
     
-    function saveScore () {
+    function saveResults () {
         var scoreItem ={
             user: GovernmentInitials.value,
             score: totalScore
         }
-        addItem(scoreItem);
-        renderScore();
+        addObject(scoreItem);
+        renderPoints();
     }
     
-    /* Adds event listeners*/
-    // startbtn to start the quiz
-    CommenceBtn.addEventListener("click", startQuiz);
+    /* i decided to add a  event listener to my commence BTN*/
+
+    CommenceBtn.addEventListener("click", beginQuiz);
     
     // Go to the next question 
     reactButtons.forEach(function(click){
     
-        click.addEventListener("click", checkAnswer);
+        click.addEventListener("click", checkReply);
     });
     
-    // Save information and go to next page
+    
+    // this portion of code will save  information 
     submitBtn.addEventListener("click", function(event) {
         event.preventDefault();
         scoreBoard.style.display = "none";
         beggingPage.style.display = "none";
         highScorePage.style.display = "block";
         ConcernsPage.style.display ="none";
-        saveScore();
+        saveResults();
     });
     
-    // Check highscore ranking list
+    
+    // this will take you the highscore ranking list 
     scoreCheck.addEventListener("click", function(event) {
         event.preventDefault();
         scoreBoard.style.display = "none";
         beggingPage.style.display = "none";
         highScorePage.style.display = "block";
         ConcernsPage.style.display ="none";
-        renderScore();
+        renderPoints();
     });
-    
-    // Go back to main page when back button is clicked
+   
+    // this will take you back to the main website page 
     backBtn.addEventListener("click",function(event){
             event.preventDefault();
             scoreBoard.style.display = "none";
@@ -269,9 +257,10 @@
             location.reload();
     });
     
-    // Clear local storage and clear page
+
+    // this will clear the local storage 
     clearBtn.addEventListener("click", function(event) {
         event.preventDefault();
         localStorage.clear();
-        renderScore();
+        renderPoints();
     });
