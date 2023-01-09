@@ -1,101 +1,130 @@
-/*Here is all my code for my JavaScript portion*/
+/*Define variables*/
+    //Assignment Code to each section
+    var welcome = document.querySelector("#introduction");
+    var CommenceBtn = document.querySelector("#start_button");
+    var beggingPage =document.querySelector("#intro_page");
     
-    var greeting = document.querySelector("#greeting"); 
-    var BeginBtn = document.querySelector("#begin_button");
-    var launchPage =document.querySelector("#launch_page"); 
+    var ConcernsPage = document.querySelector("#question_page");
+    var interrogateQuestion = document.querySelector("#ask_question");
     
-    var inquirePage = document.querySelector("#inquire_page"); 
-    var interrogateQuestion = document.querySelector("#interrogate_question");
+    var reactButtons = document.querySelectorAll(".choices");
+    var answerBtn1 = document.querySelector("#answer_btn1");
+    var answerBtn2 = document.querySelector("#answer_btn2");
+    var answerBtn3 = document.querySelector("#answer_btn3");
+    var answerBtn4 = document.querySelector("#answer_btn4");
     
-    var replyButtons = document.querySelectorAll(".choices");
-    var inquireBtn1 = document.querySelector("#inquire_btn1");
-    var inquireBtn2 = document.querySelector("#inquire_btn2");
-    var inquireBtn3 = document.querySelector("#inquire_btn3");
-    var inquireBtn4 = document.querySelector("#inquire_btn4");
+    var examineLine = document.querySelector("#check_line");
+    var scoreBoard = document.querySelector("#submit_page");
+    var finalScore = document.querySelector("#final_score");
+    var GovernmentInitials =document.querySelector("#initial");
     
-    var callLine = document.querySelector("#call_line");
-    var display = document.querySelector("#display_page");
-    var finalresult = document.querySelector("#final_result");
-    var userAbbreviation =document.querySelector("#user_abbreviation");
+    var submitBtn =document.querySelector("#submit_btn");
+    var highScorePage =document.querySelector("#highscore_page");
+    var scoreRecord =document.querySelector("#score_record");
+    var scoreCheck =document.querySelector("#score_check");
+    var finish =document.querySelector("#finish");
     
-    var suggestedBtn =document.querySelector("#suggested_btn");
-    var enterData =document.querySelector("#enter_data");
-    var score =document.querySelector("#score_check");
-    var completed =document.querySelector("#completed");
-    var finalResultsPage =document.querySelector("#finalresults_page");
+    var backBtn =document.querySelector("#back_btn");
+    var clearBtn=document.querySelector("#clear_btn");
     
-    var returnBtn =document.querySelector("#return_btn");
-    var removeBtn=document.querySelector("#remove_btn");
-    
-    // this section will be all the questions i want to ask for my quiz // 
-    var questions = [
+    // Define questions (Object)
+    var questionSource = [
         {
-            question: "String values must be enclosed within _____ .",
-            choices: ["a) pizza", "b) spongebob", "c) quotes", "d) parenthesis"],
+            question: "String values must be enclosed within _____ when being assigned to variables.",
+            choices: ["a. commas", "b. curly brackets", "c. quotes", "d. parenthesis"],
             answer: "c"
         },
         {
-            question: "Data types that are regularly used  DO NOT include  what ? :",
-            choices: ["a. patrick star", "b. flys", "c. alerts", "d. numbers"],
+            question: "Commonly used data types DO NOT include:",
+            choices: ["a. strings", "b. booleans", "c. alerts", "d. numbers"],
             answer: "c"
         },
         {
-            question: "in the language JavaScript how is a function even created ?",
-            choices: ["a) apple pie ", "b. function myFunction()", "c) squidward ", "d) Sandy Cheeks"],
+            question: "How do you create a function in JavaScript",
+            choices: ["a. function = myFunction()", "b. function myFunction()", "c. function:myFunction()", "d. createMyFunction()"],
             answer: "b"
         },
         {
-            question: " in order to varify if two variables should be  equal what should you do  ____.",
-            choices: ["a)14", "b. ==", "c) 'google it '", "d) just throw in the towel"],
+            question: "To see if two variables are equal in an if / else statement you would use ____.",
+            choices: ["a. =", "b. ==", "c. 'equals'", "d. !="],
             answer: "b"
         },
-        
+        {
+            question: "How do you call a function named myFunction?",
+            choices: ["a. call myFunction()", "b. call function myFunction()", "c. myFunction()", "d. call myFunction"],
+            answer: "c"
+        },
+        {
+            question: "The first index of an array is ____.",
+            choices: ["a. 1", "b. 0", "c. 8", "d. any"],
+            answer: "b"
+        },
+        {
+            question: "How to write an IF statement in JavaScript?",
+            choices: ["a. if i == 5 then", "b. if i = 5 then", "c. if(i == 5)", "d. if i = 5"],
+            answer: "c"
+        },
+        {
+            question: "The external JavaScript file must contain the <script> tag.",
+            choices: ["a. True", "b. False", "c. Maybe", "d. I don't know"],
+            answer: "b"
+        },
+        {
+            question: "Which event occurs when the user clicks on an HTML element?",
+            choices: ["a. onclick", "b. onchange", "c. onmouseover", "d. onmouseclick"],
+            answer: "a"
+        },
+        {
+            question: "What is the correct syntax for referring to an external script called 'xxx.js'?",
+            choices: ["a. <script name='./xxx.js'>", "b. <script href='./xxx.js'>", "c. <script scr='./xxx.js'>", "d. <script ='./xxx.js'>"],
+        answer: "c"
+        }
     ];
 
-    
+    // Set other variables
     
     var timeLeft = document.getElementById("timer");
     
-    var secondsLeft = 40;
+    var secondsLeft = 60;
     var questionNumber = 0;
     var totalScore = 0;
     var questionCount = 1;
     /*Functions*/
-    // this is where i created the start button and i added a timer too //
-
-    function timer() { 
+    // WHEN I click the start button, THEN a timer starts
+    // the setInterval() method
+    function countdown() {
             
-            var timer = setInterval(function () {
+            var timerInterval = setInterval(function () {
     
               secondsLeft--;
               timeLeft.textContent = "Time left: " + secondsLeft + " s";
         
                 if (secondsLeft <= 0){
-                    clearInterval(timer);
+                    clearInterval(timerInterval);
                     timeLeft.textContent = "Time is up!"; 
                     // if time is up, show on score board content show "Time is up! message"
                     finish.textContent = "Time is up!";
                     gameOver();
     
                 } else  if(questionCount >= questionSource.length + 1) {
-                    clearInterval(timer); 
+                    clearInterval(timerInterval);
                     gameOver();
                     } 
         }, 1000);
     }
     
-    // this function will clearly start the quiz 
-    function commenceQuiz () {
-            introPage.style.display = "none";
-            questionPage.style.display = "block";
+    // Function starts the quiz
+    function startQuiz () {
+            beggingPage.style.display = "none";
+            ConcernsPage.style.display = "block";
             questionNumber = 0
             countdown();
-            displayQuestion(questionNumber);
+            showQuestion(questionNumber);
           
     }
-    // this will display all of the following questions
-    function displayQuestion (n) {
-            askQuestion.textContent = questionSource[n].question;
+    // Present the questions and answers
+    function showQuestion (n) {
+            interrogateQuestion.textContent = questionSource[n].question;
             answerBtn1.textContent = questionSource[n].choices[0];
             answerBtn2.textContent = questionSource[n].choices[1];
             answerBtn3.textContent = questionSource[n].choices[2];
@@ -103,46 +132,47 @@
             questionNumber = n;
         }
     
-    // this will show if the  answer is correct or not
-    function examineAnswer(event) {
+    // WHEN I answer a question,Show if answer is correct or incorrect 
+    function checkAnswer(event) {
         event.preventDefault();
-        checkLine.style.display = "inline";
+        // Display if answer is correct or incorrect
+        examineLine.style.display = "block";
         setTimeout(function () {
-            checkLine.style.display = 'none';
-        }, 1000); 
+            examineLine.style.display = 'none';
+        }, 1000);
     
-        
+        // Check answer
         if (questionSource[questionNumber].answer == event.target.value) {
-            checkLine.textContent = "good!"; 
+            examineLine.textContent = "Correct!"; 
             totalScore = totalScore + 1;
     
         } else {
-            secondsLeft = secondsLeft - 5;
-            checkLine.textContent = "Wrong answer sorry! " + questionSource[questionNumber].answer + ".";
+            secondsLeft = secondsLeft - 10;
+            examineLine.textContent = "Wrong! The correct answer is " + questionSource[questionNumber].answer + ".";
         }
-        
+        // THEN I am presented with another question
         if (questionNumber < questionSource.length - 1 ) {
-
-            displayQuestion(questionNumber + 1); 
+        // Calls showQuestions to go to next question when any answerBtn is clicked
+            showQuestion(questionNumber + 1);
         } else {
         gameOver();
     }
     questionCount++;
     }
-    // if all questions are answered the final score will show
+    // WHEN all questions are answered or the timer reaches 0, end game and show score
     function gameOver() {
     
-            questionPage.style.display = "none";
-            scoreBoard.style.display = "inline";
+            ConcernsPage.style.display = "none";
+            scoreBoard.style.display = "block";
             console.log(scoreBoard);
             // show final score
-            finalScore.textContent = "Final Score: " + totalScore;
+            finalScore.textContent = "Your final score is: " + totalScore;
             // clearInterval(timerInterval);  
             timeLeft.style.display = "none"; 
     };
     
-    // this part is using local storage
-    function summonScore () {
+    // Gets current score and initials from local storage
+    function getScore () {
         var currentList =localStorage.getItem("ScoreList");
         if (currentList !== null ){
             latestList = JSON.parse(currentList);
@@ -154,8 +184,8 @@
     };
     
     
-    // this part will show the score board 
-    function displayScore () {
+    // Displays score to the score board
+    function renderScore () {
         scoreRecord.innerHTML = "";
         scoreRecord.style.display ="block";
         var highScores = sort();   
@@ -172,76 +202,76 @@
     };
     
     // Sorts score and ranking the high score list
-    function group () {
-        var unsortedList = displayScore();
+    function sort () {
+        var unsortedList = getScore();
         if (getScore == null ){
             return;
         } else {
-        unsortedList.group(function(a,b){
+        unsortedList.sort(function(a,b){
             return b.score - a.score;
         })
         return unsortedList;
     }};
     
     // Pushes new score and initials to local storage
-    function attachItem (n) {
-        var addedList = displayScore();
+    function addItem (n) {
+        var addedList = getScore();
         addedList.push(n);
         localStorage.setItem("ScoreList", JSON.stringify(addedList));
     };
     
     function saveScore () {
         var scoreItem ={
-            user: userInitial.value,
+            user: GovernmentInitials.value,
             score: totalScore
         }
         addItem(scoreItem);
-        displayScore();
+        renderScore();
     }
     
     /* Adds event listeners*/
     // startbtn to start the quiz
-    BeginBtn.addEventListener("click", commenceQuiz); 
+    CommenceBtn.addEventListener("click", startQuiz);
     
     // Go to the next question 
-    replyButtons.forEach(function(click){
+    reactButtons.forEach(function(click){
     
-        click.addEventListener("click", examineAnswer); 
+        click.addEventListener("click", checkAnswer);
     });
     
-    // this part will save information 
-    suggestedBtn.addEventListener("click", function(event) {
+    // Save information and go to next page
+    submitBtn.addEventListener("click", function(event) {
         event.preventDefault();
         scoreBoard.style.display = "none";
-        introPage.style.display = "none";
-        highScorePage.style.display = "block"; 
-        questionPage.style.display ="none";
+        beggingPage.style.display = "none";
+        highScorePage.style.display = "block";
+        ConcernsPage.style.display ="none";
         saveScore();
     });
     
-    // this part will check for the high score
-    score.addEventListener("click", function(event) {
+    // Check highscore ranking list
+    scoreCheck.addEventListener("click", function(event) {
         event.preventDefault();
         scoreBoard.style.display = "none";
-        introPage.style.display = "none";
+        beggingPage.style.display = "none";
         highScorePage.style.display = "block";
-        questionPage.style.display ="none";
-        displayScore(); 
+        ConcernsPage.style.display ="none";
+        renderScore();
     });
     
-    // this will take me back to the main page
-    returnBtn.addEventListener("click",function(event){
+    // Go back to main page when back button is clicked
+    backBtn.addEventListener("click",function(event){
             event.preventDefault();
             scoreBoard.style.display = "none";
-            introPage.style.display = "block";
+            beggingPage.style.display = "block";
             highScorePage.style.display = "none";
-            questionPage.style.display ="none";
-            location.reload(); 
+            ConcernsPage.style.display ="none";
+            location.reload();
     });
     
-    
-    removeBtn.addEventListener("click", function(event) {
+    // Clear local storage and clear page
+    clearBtn.addEventListener("click", function(event) {
         event.preventDefault();
         localStorage.clear();
-        displayScore();
-    }); 
+        renderScore();
+    });
