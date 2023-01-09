@@ -13,4 +13,6 @@ Answer the following questions as the are realated to coding. you will have a ti
 
 Also this challenge will use javascript and web API's to store the high scores. 
 
-created by kevin Rivera @ 2022 
+created by kevin Rivera @ 2022  
+
+also please be nice im still learning how to code 
